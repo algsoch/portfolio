@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vicky Kumar's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #333;
+        }
+        header {
+            background: #4CAF50;
+            color: #fff;
+            text-align: center;
+            padding: 2em 0;
+            position: relative;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2em;
+            margin-bottom: 2em;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s ease, background 0.3s ease;
+        }
+        nav a:hover {
+            color: #4CAF50;
+            background: #fff;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+        }
+        .profile-photo {
+            position: absolute;
+            top: 50%;
+            right: 2%;
+            transform: translateY(-50%);
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid black;
+            object-fit: cover;
+            background: #fff;
+        }
+        section {
+            padding: 2em;
+        }
+        h1, h2 {
+            color: #4CAF50;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 1em;
+        }
+        .project {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2em;
+        }
+        .project div {
+            flex: 1 1 calc(50% - 2em);
+            border: 1px solid #ddd;
+            padding: 1em;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .project img {
+            max-width: 100%;
+            height: auto;
+            max-height: 200px;
+            display: block;
+            margin: auto;
+        }
+        .contact-info {
+            text-align: center;
+            margin-top: 2em;
+        }
+        .contact-info p {
+            margin: 0.5em 0;
+        }
+        .social-links {
+            text-align: center;
+            margin-top: 2em;
+        }
+        .social-links a {
+            margin: 0 1em;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.5em;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            border-radius: 50%;
+            background: #4CAF50;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .social-links a:hover {
+            background: #333;
+            transform: scale(1.1);
+        }
+        .learning-section {
+            background: #f9f9f9;
+            padding: 2em;
+            margin-top: 2em;
+        }
+        .client-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2em 0;
+        }
+        .client-table th, .client-table td {
+            border: 1px solid #ddd;
+            padding: 1em;
+            text-align: left;
+        }
+        .client-table th {
+            background: #4CAF50;
+            color: #fff;
+        }
+        .client-table tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+        .client-table tr:hover {
+            background: #ddd;
+        }
+        .container{
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About Me</a>
+        <a href="#projects">Projects</a>
+        <a href="#resume">Resume</a>
+        <a href="#learning">What I'm Learning Now</a>
+        <a href="#contact">Contact</a>
+        <a href="#feedback">Client Feedback</a>
+    </nav>
+</header>
+
+<div id="home" class="container">
+    <h1>Welcome to My Portfolio</h1>
+    <p>I'm Vicky Kumar, a passionate software engineer.</p>
+</div>
+
+<section id="about" class="container">
+    <h2>About Me</h2>
+    <p>I'm a Data Science student at IIT Madras with a passion for software development. I have strong skills in Python and Java, and I'm currently learning Data Structures and Algorithms. I'm also working on personal projects, including creating an app that works like a freelancer app to provide the best solutions to local people.</p>
+    <ul>
+        <li>Python and Java</li>
+        <li>Data Structures and Algorithms</li>
+        <li>App Development</li>
+    </ul>
+</section>
+
+<section id="projects" class="container">
+    <h2>Projects</h2>
+    <div class="project">
+        <div>
+            <img src="https://th.bing.com/th/id/OIP.BlsZYspahg8AuS0TycC6rQHaGv?rs=1&pid=ImgDetMain" alt="Project 1">
+            <h3>Freelancer App</h3>
+            <p>A brief overview of what the project is about.</p>
+            <p>Technologies Used: Python, Java, Django, React</p>
+            <p>Role and Contributions: Developed the backend API, implemented user authentication, and integrated with the front-end interface. Overcame challenges related to API performance and security.</p>
+            <p>Screenshots or Demos:</p>
+            <img src="project1_demo.jpg" alt="Project 1 Demo">
+            <p>Source Code: <a href="https://github.com/vickykumar/Project1" target="_blank">View Project on GitHub</a></p>
+        </div>
+        <div>
+            <img src="project2.png" alt="Project 2">
+            <h3>Product Catalog</h3>
+            <p>A brief overview of what the project is about.</p>
+            <p>Technologies Used: HTML, CSS, JavaScript, Bootstrap</p>
+            <p>Role and Contributions: Designed the user interface, implemented pagination, and ensured responsiveness across devices. Overcame challenges related to layout consistency and cross-browser compatibility.</p>
+            <p>Screenshots or Demos:</p>
+            <img src="demo2.png" alt="Project 2 Demo">
+            <p>Source Code: <a href="https://github.com/vickykumar/Project2" target="_blank">View Project on GitHub</a></p>
+        </div>
+    </div>
+</section>
+
+<section id="resume" class="container">
+    <h2>Resume</h2>
+    <embed src="resume.pdf" type="application/pdf" width="100%" height="600px" />
+    <a href="resume.pdf" download>Download Resume</a>
+</section>
+
+<section id="learning" class="container learning-section">
+    <h2>What I'm Learning Now</h2>
+    <p>Currently, I am learning advanced Data Structures and Algorithms to enhance my problem-solving skills. Additionally, I am exploring new frameworks and technologies to broaden my development skills.</p>
+</section>
+
+<section id="contact" class="container">
+    <h2>Contact</h2>
+    <div class="contact-info">
+        <p>Name: Vicky Kumar</p>
+        <p>Email: <a href="mailto:npdimagine@gmail.com">npdimagine@gmail.com</a></p>
+        <p>Phone: 8383848219</p>
+    </div>
+</section>
+
+<section id="feedback" class="container">
+    <h2>Client Feedback</h2>
+    <table class="client-table">
+        <tr>
+            <th>Client Name</th>
+            <th>Company</th>
+            <th>Project</th>
+        </tr>
+        <tr>
+            <td>Devanand</td>
+            <td>AVD SURGICO</td>
+            <td>Website making for AVD SURGICO</td>
+        </tr>
+    </table>
+</section>
+
+<div class="social-links">
+    <a href="https://twitter.com/@algsoch" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="https://github.com/algsoch-imagine" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://freelancer.com/@Algsoch" target="_blank"><i class="fab fa-freelancer"></i></a>
+    <a href="https://www.instagram.com/algsoch/?hl=en" target="_blank"><i class="fab fa-upwork"></i></a>
+</div>
+
+</body>
+</html>
