@@ -79,6 +79,10 @@
                 opacity: 1;
             }
         }
+        .status-select {
+            padding: 5px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -120,6 +124,7 @@
                     <th>Description</th>
                     <th>Status</th>
                     <th>Learning</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -133,6 +138,7 @@
             const form = document.getElementById('ideaForm');
             const ideaTableBody = document.getElementById('ideaTable').querySelector('tbody');
             let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
+            const password = 'npdimagine';
 
             const renderIdeas = () => {
                 ideaTableBody.innerHTML = '';
@@ -142,10 +148,38 @@
                         <td>${idea.ideaName}</td>
                         <td>${idea.ideaDate}</td>
                         <td>${idea.description}</td>
-                        <td>${idea.status}</td>
+                        <td>
+                            <select class="status-select" data-index="${index}">
+                                <option value="Not Started" ${idea.status === 'Not Started' ? 'selected' : ''}>Not Started</option>
+                                <option value="In Progress" ${idea.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
+                                <option value="Completed" ${idea.status === 'Completed' ? 'selected' : ''}>Completed</option>
+                            </select>
+                        </td>
                         <td>${idea.learning}</td>
+                        <td><button class="edit-button" data-index="${index}">Edit</button></td>
                     `;
                     ideaTableBody.appendChild(row);
+                });
+
+                document.querySelectorAll('.status-select').forEach(select => {
+                    select.addEventListener('change', (event) => {
+                        const index = event.target.getAttribute('data-index');
+                        ideas[index].status = event.target.value;
+                        localStorage.setItem('ideas', JSON.stringify(ideas));
+                        renderIdeas();
+                    });
+                });
+
+                document.querySelectorAll('.edit-button').forEach(button => {
+                    button.addEventListener('click', (event) => {
+                        const index = event.target.getAttribute('data-index');
+                        const enteredPassword = prompt('Enter the password to edit this idea:');
+                        if (enteredPassword === password) {
+                            editIdea(index);
+                        } else {
+                            alert('Incorrect password');
+                        }
+                    });
                 });
             };
 
@@ -162,6 +196,19 @@
                 localStorage.setItem('ideas', JSON.stringify(ideas));
                 renderIdeas();
                 form.reset();
+            };
+
+            const editIdea = (index) => {
+                const idea = ideas[index];
+                document.getElementById('ideaName').value = idea.ideaName;
+                document.getElementById('ideaDate').value = idea.ideaDate;
+                document.getElementById('description').value = idea.description;
+                document.getElementById('status').value = idea.status;
+                document.getElementById('learning').value = idea.learning;
+
+                ideas.splice(index, 1);
+                localStorage.setItem('ideas', JSON.stringify(ideas));
+                renderIdeas();
             };
 
             form.addEventListener('submit', saveIdea);
