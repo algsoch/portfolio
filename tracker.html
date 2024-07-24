@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Idea Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        form {
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input, .input-group textarea, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .input-group input:focus, .input-group textarea:focus, .input-group select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .idea-container {
+            margin-top: 20px;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Project Idea Tracker</h1>
+    <form id="ideaForm">
+        <div class="input-group">
+            <label for="ideaName">Idea Name:</label>
+            <input type="text" id="ideaName" required>
+        </div>
+        <div class="input-group">
+            <label for="ideaDate">Idea Date:</label>
+            <input type="date" id="ideaDate" required>
+        </div>
+        <div class="input-group">
+            <label for="description">Description:</label>
+            <textarea id="description" rows="4" required></textarea>
+        </div>
+        <div class="input-group">
+            <label for="status">Status:</label>
+            <select id="status" required>
+                <option value="Not Started">Not Started</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="learning">Learning:</label>
+            <textarea id="learning" rows="4" required></textarea>
+        </div>
+        <button type="submit">Add Idea</button>
+    </form>
+
+    <div class="idea-container">
+        <table id="ideaTable">
+            <thead>
+                <tr>
+                    <th>Idea Name</th>
+                    <th>Idea Date</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Learning</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Ideas will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById('ideaForm');
+            const ideaTableBody = document.getElementById('ideaTable').querySelector('tbody');
+            let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
+
+            const renderIdeas = () => {
+                ideaTableBody.innerHTML = '';
+                ideas.forEach((idea, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${idea.ideaName}</td>
+                        <td>${idea.ideaDate}</td>
+                        <td>${idea.description}</td>
+                        <td>${idea.status}</td>
+                        <td>${idea.learning}</td>
+                    `;
+                    ideaTableBody.appendChild(row);
+                });
+            };
+
+            const saveIdea = (event) => {
+                event.preventDefault();
+                const newIdea = {
+                    ideaName: document.getElementById('ideaName').value,
+                    ideaDate: document.getElementById('ideaDate').value,
+                    description: document.getElementById('description').value,
+                    status: document.getElementById('status').value,
+                    learning: document.getElementById('learning').value
+                };
+                ideas.push(newIdea);
+                localStorage.setItem('ideas', JSON.stringify(ideas));
+                renderIdeas();
+                form.reset();
+            };
+
+            form.addEventListener('submit', saveIdea);
+            renderIdeas();
+        });
+    </script>
+</body>
+</html>
