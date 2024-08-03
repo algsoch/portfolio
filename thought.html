@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Your Experience</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+    form {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    label, textarea, input {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    textarea {
+      height: 150px;
+    }
+    input[type="submit"] {
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    .article {
+      background: #fff;
+      padding: 15px;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .article h3 {
+      margin: 0 0 10px;
+    }
+    .article p {
+      margin: 0 0 10px;
+    }
+    .article small {
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center;">Submit Your Experience</h1>
+  <form id="experienceForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="experience">Your Experience:</label>
+    <textarea id="experience" name="experience" required></textarea>
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <h2 style="text-align: center;">Submitted Articles</h2>
+  <div id="articles" style="max-width: 600px; margin: 20px auto;"></div>
+
+  <script>
+    document.getElementById('experienceForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var name = document.getElementById('name').value;
+      var experience = document.getElementById('experience').value;
+
+      fetch('/submitExperience', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name: name, experience: experience })
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+        loadArticles();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    });
+
+    function loadArticles() {
+      fetch('/experiences')
+        .then(response => response.json())
+        .then(data => {
+          const articlesDiv = document.getElementById('articles');
+          articlesDiv.innerHTML = '';
+          data.forEach(article => {
+            const articleDiv = document.createElement('div');
+            articleDiv.className = 'article';
+            articleDiv.innerHTML = `
+              <h3>${article.name}</h3>
+              <p>${article.experience}</p>
+              <small>${new Date(article.date).toLocaleString()}</small>
+            `;
+            articlesDiv.appendChild(articleDiv);
+          });
+        });
+    }
+
+    // Load articles on page load
+    window.onload = loadArticles;
+  </script>
+
+  <!-- Server Code (Node.js with Express) -->
+  <script type="text/javascript">
+    (function() {
+      const express = require('express');
+      const fs = require('fs');
+      const path = require('path');
+      const bodyParser = require('body-parser');
+      const app = express();
+
+      app.use(bodyParser.json());
+      app.use(express.static(path.join(__dirname, 'public')));
+
+      const DATA_FILE = path.join(__dirname, 'data.json');
+
+      // Function to read data from the JSON file
+      const readData = () => {
+        if (fs.existsSync(DATA_FILE)) {
+          const data = fs.readFileSync(DATA_FILE, 'utf-8');
+          return JSON.parse(data);
+        }
+        return [];
+      };
+
+      // Function to write data to the JSON file
+      const writeData = (data) => {
+        fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
+      };
+
+      app.post('/submitExperience', (req, res) => {
+        const { name, experience } = req.body;
+        const data = readData();
+        data.push({ name, experience, date: new Date().toISOString() });
+        writeData(data);
+        res.json({ message: 'Experience submitted successfully!' });
+      });
+
+      app.get('/experiences', (req, res) => {
+        const data = readData();
+        res.json(data);
+      });
+
+      const PORT = 3000;
+      app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+      });
+    })();
+  </script>
+</body>
+</html>
