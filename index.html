@@ -4,42 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vicky Kumar's Portfolio</title>
+
+    <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="IMG_20240528.jpg">
+    
+    <!-- Google Fonts for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Pacifico&display=swap" rel="stylesheet">
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Universal Style Reset */
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        /* Body and Font Styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0;
             color: #333;
         }
+
+        /* Header and Navigation Styling */
         header {
-            background: #4CAF50;
+            background: linear-gradient(to right, #4CAF50, #2e8b57);
             color: #fff;
             text-align: center;
             padding: 2em 0;
             position: relative;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
+
+        /* Algsoch logo animation */
+        .header-logo {
+            font-family: 'Pacifico', cursive;
+            font-size: 3em;
+            color: white;
+            animation: bounceIn 2s;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
         nav {
             display: flex;
             justify-content: center;
             gap: 2em;
-            margin-bottom: 2em;
+            margin-top: 1em;
         }
+
         nav a {
             color: #fff;
             text-decoration: none;
-            font-size: 1.2em;
-            transition: color 0.3s ease, background 0.3s ease;
-        }
-        nav a:hover {
-            color: #4CAF50;
-            background: #fff;
+            font-size: 1.1em;
             padding: 0.5em 1em;
-            border-radius: 5px;
+            transition: background 0.3s, transform 0.3s;
         }
+
+        nav a:hover {
+            background-color: #fff;
+            color: #4CAF50;
+            border-radius: 8px;
+            transform: scale(1.1);
+        }
+
+        /* Profile Photo Styling */
         .profile-photo {
             position: absolute;
             top: 50%;
@@ -48,181 +82,261 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            border: 3px solid black;
+            border: 3px solid white;
             object-fit: cover;
             background: #fff;
         }
+
+        /* Section Styling */
         section {
-            padding: 2em;
+            padding: 4em 0;
+            background-color: #fff;
+            margin-top: 1.5em;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
+        section:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
         h1, h2 {
             color: #4CAF50;
+            text-align: center;
+            margin-bottom: 1em;
+            font-weight: 500;
         }
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 1em;
+
+        p {
+            line-height: 1.7;
+            text-align: center;
+            color: #666;
         }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            padding: 0.5em 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Project Section Styling */
         .project {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 2em;
+            padding: 2em;
         }
+
         .project div {
-            flex: 1 1 calc(50% - 2em);
-            border: 1px solid black;
-            padding: 1em;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            background: #fff;
+            flex-basis: calc(33% - 2em);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
+
+        .project div:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
         .project img {
             max-width: 100%;
             height: auto;
-            max-height: 200px;
-            display: block;
-            margin: auto;
+            border-radius: 8px;
+            margin-bottom: 1em;
         }
-        .contact-info {
+
+        .project h3 {
+            color: #333;
+            margin-bottom: 0.5em;
+        }
+
+        /* Resume Embed and Download Styling */
+        .resume-section {
             text-align: center;
-            margin-top: 2em;
         }
-        .contact-info p {
-            margin: 0.5em 0;
+
+        .resume-section a {
+            display: inline-block;
+            margin-top: 1em;
+            padding: 1em 2em;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
         }
+
+        .resume-section a:hover {
+            background-color: #2e8b57;
+        }
+
+        /* Contact Section */
+        .contact-info p, .contact-info a {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact-info a {
+            text-decoration: none;
+            color: #4CAF50;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Social Media Icons Styling */
         .social-links {
             text-align: center;
-            margin-top: 2em;
+            padding: 1.5em 0;
         }
+
         .social-links a {
-            margin: 0 1em;
-            text-decoration: none;
             color: #fff;
+            background-color: #4CAF50;
+            margin: 0 1em;
             font-size: 1.5em;
             display: inline-block;
             width: 50px;
             height: 50px;
             line-height: 50px;
             border-radius: 50%;
-            background: #4CAF50;
-            transition: background 0.3s ease, transform 0.3s ease;
+            transition: background-color 0.3s, transform 0.3s;
         }
+
         .social-links a:hover {
-            background: #333;
+            background-color: #2e8b57;
             transform: scale(1.1);
         }
-        .learning-section {
-            background: #f9f9f9;
-            padding: 2em;
-            margin-top: 2em;
-        }
+
+        /* Feedback Table Styling */
         .client-table {
             width: 100%;
+            margin-top: 2em;
             border-collapse: collapse;
-            margin: 2em 0;
         }
+
         .client-table th, .client-table td {
             border: 1px solid #ddd;
             padding: 1em;
             text-align: left;
         }
+
         .client-table th {
-            background: #4CAF50;
-            color: #fff;
+            background-color: #4CAF50;
+            color: white;
         }
+
         .client-table tr:nth-child(even) {
-            background: #f2f2f2;
+            background-color: #f9f9f9;
         }
+
         .client-table tr:hover {
-            background: #ddd;
+            background-color: #ddd;
         }
-        .container{
+        header-logo {
+            font-family: 'Pacifico', cursive;
+            font-size: 4em;
+            color: white;
+            text-align: center;
+            margin: 0 auto;
+            padding: 1em 0;
+            animation: pulse 3s infinite ease-in-out, rotate 10s infinite linear;
+        }
+    
+        /* Logo Animation: Pulse and Rotate */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    
+        /* Positioning the Navigation Bar below the Logo */
+        nav {
+            display: flex;
             justify-content: center;
-        }
+            gap: 2em;
+            margin-top: 1em;
+        }    
     </style>
 </head>
+
 <body>
 
-<header>
+    <header>
+    <div class="header-logo">Algsoch</div>
     <nav>
         <a href="#home">Home</a>
         <a href="#about">About Me</a>
         <a href="#projects">Projects</a>
         <a href="#resume">Resume</a>
-        <a href="#learning">What I'm Learning Now</a>
+        <a href="#learning">What I'm Learning</a>
         <a href="#contact">Contact</a>
-        <a href="#feedback">Client Feedback</a>
+        <a href="#feedback">Feedback</a>
         <a href="tracker.html">Tracking Project</a>
         <a href="thought.html">Thought</a>
         <a href="preview.html">Preview</a>
 
-        
     </nav>
 </header>
 
 <div id="home" class="container">
     <h1>Welcome to My Portfolio</h1>
-    <p>I'm Vicky Kumar, a passionate software engineer.</p>
+    <p>I'm Vicky Kumar, a passionate software engineer with a focus on data science and full-stack development.</p>
 </div>
 
 <section id="about" class="container">
     <h2>About Me</h2>
-    <p>I'm a Data Science student at IIT Madras with a passion for software development. I have strong skills in Python and Java, and I'm currently learning Data Structures and Algorithms. I'm also working on personal projects, including creating an app that works like a freelancer app to provide the best solutions to local people.</p>
-    <ul>
-        <li>Python and Java</li>
-        
-        <li>App Development</li>
-    </ul>
+    <p>A highly motivated and passionate software engineer with hands-on experience in full-stack development, proficient in Python, Java, and web technologies. Seeking to leverage my skills in real-world projects to deliver robust and scalable software solutions.</p>
 </section>
 
 <section id="projects" class="container">
     <h2>Projects</h2>
     <div class="project">
         <div>
-            <img src="https://th.bing.com/th/id/OIP.BlsZYspahg8AuS0TycC6rQHaGv?rs=1&pid=ImgDetMain" alt="Project 1">
-            <h3>Freelancer App</h3>
-            <p>A brief overview of what the project is about.</p>
-            <p>Technologies Used: Python, Java, Django, React</p>
-            <p>Role and Contributions: Developed the backend API, implemented user authentication, and integrated with the front-end interface. Overcame challenges related to API performance and security.</p>
-            <p>Screenshots or Demos:</p>
-            
-            <img src="project1_demo.jpg" alt="Project 1 Demo">
-            <p>Source Code: <a href="https://github.com/vickykumar/Project1" target="_blank">View Project on GitHub</a></p>
+            <img src="project1_demo.jpg" alt="AVD Surgico Website">
+            <h3>AVD Surgico Website</h3>
+            <p>Developed a responsive product catalog website for a medical equipment company using HTML, CSS, and JavaScript. Implemented pagination for product listings, enhancing user navigation and experience. Optimized loading speed by 30%.</p>
+            <p><a href="https://algsoch.github.io/avdsurgico/" target="_blank">Live Demo</a></p>
         </div>
         <div>
-            <img src="project2.png" alt="Project 2">
-            <h3>Product Catalog</h3>
-            <p>A brief overview of what the project is about.</p
-            <p>Technologies Used: HTML, CSS, JavaScript, Bootstrap</p>
-            <p>Role and Contributions: Designed the user interface, implemented pagination, and ensured responsiveness across devices. Overcame challenges related to layout consistency and cross-browser compatibility.</p>
-            <p>Screenshots or Demos:</p>
-            <img src="demo2.png" alt="Project 2 Demo">
-            <a href="https://algsoch-imagine.github.io/avdsurgico/">avd surgico</a>
-            <p>Source Code: <a href="https://github.com/vickykumar/Project2" target="_blank">View Project on GitHub</a></p>
+            <img src="demo2.png" alt="Tailor Management System">
+            <h3>Tailor Management System (Ongoing)</h3>
+            <p>Building a full-stack website to connect local tailors with customers. Developed using Node.js and MongoDB, featuring user registration, order history, and quoting systems.</p>
         </div>
-         <div>
-            <img src="https://th.bing.com/th/id/OIP.dJq37NxpxV-QD0hrFJ68_wHaGV?w=205&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Project 2">
-            <h3>project stats</h3>
-            <p>A brief overview of what the project is about.</p>
-            <p>Technologies Used: HTML, CSS, JavaScript, Bootstrap</p>
-            <p>Role and Contributions: Designed the user interface, implemented pagination, and ensured responsiveness across devices. Overcame challenges related to layout consistency and cross-browser compatibility.</p>
-            <p>Screenshots or Demos:</p>
-            <img src="demo3.png" alt="Project 2 Demo">
-            <a href="https://sites.google.com/view/algsoch/home">personal project</a>
-            <p>Source Code: <a href="https://github.com/vickykumar/Project2" target="_blank">View Project on GitHub</a></p>
+        <div>
+            <img src="demo3.png" alt="Personal Portfolio Website">
+            <h3>Personal Portfolio Website</h3>
+            <p>Created a professional personal portfolio to showcase projects, skills, and achievements. Built with HTML, CSS, and JavaScript, featuring responsive design for compatibility across devices.</p>
+            <p><a href="https://algsoch.github.io/portfolio/" target="_blank">View on GitHub</a></p>
         </div>
-
     </div>
 </section>
 
-<section id="resume" class="container">
+<section id="resume" class="resume-section">
     <h2>Resume</h2>
-    <embed src="algsoch.pdf" type="application/pdf" width="100%" height="600px" />
+    <embed src="algsoch.pdf" type="application/pdf" width="80%" height="600px" />
     <a href="algsoch.pdf" download>Download Resume</a>
 </section>
 
-<section id="learning" class="container learning-section">
+<section id="learning" class="container">
     <h2>What I'm Learning Now</h2>
-    <p>Currently, I am learning advanced android development to enhance my problem-solving skills. Additionally, I am exploring new frameworks and technologies to broaden my development skills.</p>
+    <p>Currently, I am focused on learning advanced Android development and cloud technologies to expand my skills in mobile and web applications.</p>
 </section>
 
 <section id="contact" class="container">
@@ -231,6 +345,8 @@
         <p>Name: Vicky Kumar</p>
         <p>Email: <a href="mailto:npdimagine@gmail.com">npdimagine@gmail.com</a></p>
         <p>Phone: 8383848219</p>
+        <p>GitHub: <a href="https://github.com/algsoch" target="_blank">https://github.com/algsoch</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/algscoch" target="_blank">https://www.linkedin.com/in/algscoch</a></p>
     </div>
 </section>
 
@@ -244,8 +360,8 @@
         </tr>
         <tr>
             <td>Devanand</td>
-            <td>AVD SURGICO</td>
-            <td>Website making for AVD SURGICO</td>
+            <td>AVD Surgico</td>
+            <td>Website making for AVD Surgico</td>
         </tr>
     </table>
 </section>
@@ -254,9 +370,8 @@
     <a href="https://twitter.com/@algsoch" target="_blank"><i class="fab fa-twitter"></i></a>
     <a href="https://github.com/algsoch" target="_blank"><i class="fab fa-github"></i></a>
     <a href="https://freelancer.com/@Algsoch" target="_blank"><i class="fab fa-freelancer"></i></a>
-    <a href="https://www.instagram.com/algsoch/?hl=en" target="_blank"><i class="fab fa-upwork"></i></a>
-    <a href="https://www.linkedin.com/in/algsoch/" target="_blank"><i class="fab fa-upwork"></i></a>
-
+    <a href="https://www.instagram.com/algsoch/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.linkedin.com/in/algsoch/" target="_blank"><i class="fab fa-linkedin"></i></a>
 </div>
 
 </body>
